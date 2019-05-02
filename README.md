@@ -4,7 +4,7 @@ Simple Maven multi module REST application with H2 database and Spring Security 
 
 In dev profile all routes are not protected. Prod profile allows access to endpoints only for specific roles with use of custom filter.
 
-##Usage
+## Usage
 
 There are two users initially loaded to database:
 
@@ -34,7 +34,7 @@ curl http://localhost:8080/api/user/firstuser
 
 #### Production profile
 
-To run application with production profile run `.mvnw clean install && ./mvnw spring-boot:run -pl app -Dspring-boot.run.profiles=prod`
+To run application with production profile run `./mvnw clean install && ./mvnw spring-boot:run -pl app -Dspring-boot.run.profiles=prod`
 
 Then you can curl requests which were posted above but you have to add header which will allow to authenticate user.
 
@@ -43,5 +43,5 @@ curl -H "Bearer: firstuser" http://localhost:8080/api/movie
 ```
 
 ```
-curl -H "Bearer: seconduser" http:localhost:8080/api/user/firstuser
+curl -H "Bearer: seconduser" http://localhost:8080/api/user/firstuser
 ```
