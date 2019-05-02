@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bartoszsokolik/spring-security-custom-filter.svg?branch=master)](https://travis-ci.org/bartoszsokolik/spring-security-custom-filter)
+
 ## About
 
 Simple Maven multi module REST application with H2 database and Spring Security configuration for dev and prod profile.
