@@ -1,6 +1,5 @@
 package pl.solutions.software.sokolik.bartosz.service.impl;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-@Primary
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
