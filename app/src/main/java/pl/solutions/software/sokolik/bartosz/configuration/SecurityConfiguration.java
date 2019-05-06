@@ -2,7 +2,7 @@ package pl.solutions.software.sokolik.bartosz.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import pl.solutions.software.sokolik.bartosz.filter.CustomSecurityFilter;
 
-import static pl.solutions.software.sokolik.bartosz.configuration.Profiles.PROD;
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 
-@Profile(PROD)
+@Order(HIGHEST_PRECEDENCE + 1)
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
