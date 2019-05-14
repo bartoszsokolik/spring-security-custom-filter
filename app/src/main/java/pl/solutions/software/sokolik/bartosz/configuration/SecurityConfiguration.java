@@ -28,7 +28,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.exceptionHandling()
+                .authenticationEntryPoint(customAuthenticationEntryPoint())
+                .and()
+                .authorizeRequests()
                 .antMatchers("/h2-console/**")
                 .permitAll()
                 .anyRequest()
@@ -48,5 +51,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public CustomSecurityFilter customSecurityFilter() {
         return new CustomSecurityFilter(userDetailsService);
+    }
+
+    @Bean
+    public CustomAuthenticationEntryPoint customAuthenticationEntryPoint() {
+        return new CustomAuthenticationEntryPoint();
     }
 }
