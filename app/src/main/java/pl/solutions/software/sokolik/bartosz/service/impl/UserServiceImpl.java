@@ -3,9 +3,12 @@ package pl.solutions.software.sokolik.bartosz.service.impl;
 import org.springframework.stereotype.Service;
 import pl.solutions.software.sokolik.bartosz.assembler.UserAssembler;
 import pl.solutions.software.sokolik.bartosz.controller.dto.UserDto;
+import pl.solutions.software.sokolik.bartosz.domain.User;
 import pl.solutions.software.sokolik.bartosz.exception.UserNotFoundException;
 import pl.solutions.software.sokolik.bartosz.repository.UserRepository;
 import pl.solutions.software.sokolik.bartosz.service.UserService;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,5 +26,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username)
                 .map(userAssembler::fromDomain)
                 .orElseThrow(() -> new UserNotFoundException(String.format("User with username %s not found", username)));
+    }
+
+    @Override
+    public Optional<User> getByUsername(String username) {
+        return Optional.ofNullable(userRepository.getByUsername(username));
     }
 }
