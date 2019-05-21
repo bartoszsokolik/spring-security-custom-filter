@@ -6,15 +6,21 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import pl.solutions.software.sokolik.bartosz.service.UserService;
 
-import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
-import static pl.solutions.software.sokolik.bartosz.configuration.Profiles.DEV;
+import static pl.solutions.software.sokolik.bartosz.configuration.Profiles.PROD;
 
-@Profile(DEV)
-@Order(HIGHEST_PRECEDENCE)
+@Profile("!" + PROD)
 @Configuration
 @EnableWebSecurity
 public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    private final UserService userService;
+
+    public DevSecurityConfiguration(UserService userService) {
+        this.userService = userService;
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -25,5 +31,9 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .headers()
                 .frameOptions()
                 .disable();
+
+        http.authorizeRequests()
+                .anyRequest()
+                .permitAll();
     }
 }
